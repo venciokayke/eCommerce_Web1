@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaShoppingCart } from "react-icons/fa";
 
-
 export default function Header() {
   const pathName = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,8 +28,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full border-b backdrop-blur-md transition-all duration-500 ${isScrolled ? "bg-slate/95 border-gray/30" : "bg-black/80 border-white/10"}`}
-    >
+      className={`fixed top-0 z-50 w-full border-b backdrop-blur-md transition-all duration-500 ${isScrolled ? "bg-black/95 border-white/10" : "bg-black/80 border-transparent"}`}>
       <div
         className={`mx-auto flex max-w-7xl items-center justify-between px-6 transition-all duration-500 ${isScrolled ? "py-2" : "py-4"}`}
       >
@@ -42,7 +40,11 @@ export default function Header() {
           <div
             className={`relative flex items-center justify-center transition-all duration-500 group-hover:scale-105 ${isScrolled ? "w-[110px] h-[35px] md:w-[140px] md:h-[45px]" : "w-[150px] h-[50px] md:w-[180px] md:h-[60px]"}`}
           >
-            <span className="text-[44px] tracking-widest text-white logo-text">
+            <span
+              className={`tracking-widest text-white logo-text transition-all duration-500 ${
+                isScrolled ? "text-[32px]" : "text-[44px]"
+              }`}
+            >
               P2 Store
             </span>
           </div>
@@ -50,17 +52,23 @@ export default function Header() {
 
         {/* Menu Desktop */}
         <nav className="hidden md:flex items-center gap-8 font-medium uppercase text-base tracking-wider">
-          <a href="/#produtos" className="hover:text-gray-500 transition-colors">
+          <a
+            href="/#produtos"
+            className="hover:text-gray-500 transition-colors"
+          >
             Nossos Produtos
           </a>
-          <a href="/#quem-somos" className="hover:text-gray-500 transition-colors">
+          <a
+            href="/#quem-somos"
+            className="hover:text-gray-500 transition-colors"
+          >
             Quem Somos
           </a>
           <Link
-                href="/carrinho-compras"
-                 className="border border-white text-white px-4 py-4 rounded-full hover:bg-cyan-600 transition-colors"
-              >
-            <FaShoppingCart className="text-lg"/>
+            href="/carrinho-compras"
+            className="border border-white text-white px-4 py-4 rounded-full hover:bg-cyan-600 transition-colors"
+          >
+            <FaShoppingCart className="text-lg" />
           </Link>
         </nav>
       </div>
