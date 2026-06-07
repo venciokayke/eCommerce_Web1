@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from 'next/font/google';
 import { Akaya_Kanadaka } from 'next/font/google';
+import FloatingCart from "./components/FloatingCart";
 
 const akaya = Akaya_Kanadaka({
   subsets: ['latin'],
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="pt-br" className={`${poppins.variable} ${akaya.variable} scroll-smooth`}>
       <body className={`bg-slate-900 text-white antialiased font-poppins ${poppins.className}`}>
         <main>{children}</main>
+        <FloatingCart />
       </body>
     </html>
   )

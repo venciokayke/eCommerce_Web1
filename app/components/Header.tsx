@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { FaShoppingCart } from "react-icons/fa";
 
 export default function Header() {
+  const [isOpen, setIsOpen] = useState(false);
   const pathName = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -41,7 +42,7 @@ export default function Header() {
             className={`relative flex items-center justify-center transition-all duration-500 group-hover:scale-105 ${isScrolled ? "w-[110px] h-[35px] md:w-[140px] md:h-[45px]" : "w-[150px] h-[50px] md:w-[180px] md:h-[60px]"}`}
           >
             <span
-              className={`tracking-widest text-white logo-text transition-all duration-500 ${
+              className={`tracking-widest text-white logo-text transition-all duration-500 whitespace-nowrap ${
                 isScrolled ? "text-[32px]" : "text-[44px]"
               }`}
             >
@@ -49,6 +50,16 @@ export default function Header() {
             </span>
           </div>
         </Link>
+
+         {/* Menu Hambúrguer (Mobile) */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="flex flex-col gap-1.5 p-2 focus:outline-none md:hidden"
+        >
+          <span className={`h-0.5 w-6 bg-white transition-all duration-300 ${isOpen ? "rotate-45 translate-y-2" : ""}`}></span>
+          <span className={`h-0.5 w-6 bg-white transition-all duration-300 ${isOpen ? "opacity-0" : ""}`}></span>
+          <span className={`h-0.5 w-6 bg-white transition-all duration-300 ${isOpen ? "-rotate-45 -translate-y-2" : ""}`}></span>
+        </button>
 
         {/* Menu Desktop */}
         <nav className="hidden md:flex items-center gap-8 font-medium uppercase text-base tracking-wider">
@@ -66,11 +77,34 @@ export default function Header() {
           </a>
           <Link
             href="/carrinho-compras"
-            className="border border-white text-white px-4 py-4 rounded-full hover:bg-cyan-600 transition-colors"
+            className="border border-white text-white px-4 py-2 rounded-full hover:bg-cyan-600 transition-colors flex items-center justify-center"
           >
             <FaShoppingCart className="text-lg" />
           </Link>
         </nav>
+      </div>
+
+      {/* Menu Mobile Dropdown */}
+      <div
+        className={`absolute top-full left-0 w-full bg-black border-b border-white/20 transition-all duration-300 overflow-hidden ${isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}
+      >
+        <ul className="flex flex-col gap-6 p-8 text-center text-lg font-semibold uppercase tracking-widest text-white">
+          <li>
+            <a href="/#solucoes" onClick={() => setIsOpen(false)}>
+              Nossos Produtos
+            </a>
+          </li>
+          <li>
+            <a href="/#quem-somos" onClick={() => setIsOpen(false)}>
+              Quem Somos
+            </a>
+          </li>
+          <li>
+            <Link href="/trabalhe-conosco" onClick={() => setIsOpen(false)}>
+              Trabalhe Conosco
+            </Link>
+          </li>
+        </ul>
       </div>
     </header>
   );
