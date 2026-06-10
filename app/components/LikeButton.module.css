@@ -1,0 +1,33 @@
+/* Estilo base do botão de favoritar */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  font-size: 1rem;
+  cursor: pointer;
+  /* transição suave nos estados */
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+/* Efeito hover — destaque vermelho para indicar que vai curtir */
+.btn:hover {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  transform: scale(1.1);
+}
+
+/* Quando o produto está nos favoritos */
+.btn.liked {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.btn.liked:hover {
+  background-color: rgba(239, 68, 68, 0.3);
+}

@@ -1,0 +1,119 @@
+/* Seção de produtos com espaçamento vertical generoso */
+.section {
+  padding: 80px 0;
+  background-color: #0f172a;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Cabeçalho centralizado */
+.heading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: #f1f5f9;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #64748b;
+}
+
+/* Barra de filtros por categoria */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.filterBtn {
+  padding: 8px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: transparent;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: capitalize;
+  transition: all 0.2s ease;
+}
+
+.filterBtn:hover {
+  border-color: #0891b2;
+  color: #22d3ee;
+}
+
+/* Filtro ativo */
+.filterActive {
+  background-color: #0891b2;
+  border-color: #0891b2;
+  color: #fff;
+}
+
+/* Grid responsivo — 1 col no mobile, 2 no tablet, 3/4 no desktop */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 24px;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Feedback centralizado (loading/erro) */
+.feedback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 60px 0;
+  color: #64748b;
+}
+
+/* Spinner de carregamento */
+.spinner {
+  width: 44px;
+  height: 44px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #0891b2;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.errorMsg {
+  color: #f87171;
+  font-size: 0.95rem;
+}
