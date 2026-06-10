@@ -18,6 +18,15 @@ export default function ProductsSection() {
   // Categoria selecionada para filtrar — "all" significa todas
   const [categoriaSelecionada, setCategoriaSelecionada] = useState("all");
 
+  // Mapa de tradução das categorias da API para português
+  const traducoes: Record<string, string> = {
+    all: "Todos",
+    "men's clothing": "Roupas Masculinas",
+    "women's clothing": "Roupas Femininas",
+    jewelery: "Joias",
+    electronics: "Eletrônicos",
+  };
+
   // Busca os produtos da API ao montar o componente
   useEffect(() => {
     async function buscarProdutos() {
@@ -69,7 +78,7 @@ export default function ProductsSection() {
                 categoriaSelecionada === cat ? styles.filterActive : ""
               }`}
             >
-              {cat === "all" ? "Todos" : cat}
+              {traducoes[cat] ?? cat}
             </button>
           ))}
         </div>

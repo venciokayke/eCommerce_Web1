@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { FaTrash, FaMinus, FaPlus, FaShoppingCart } from "react-icons/fa";
 import { useCart } from "@/app/context/CartContext";
+import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
 import styles from "./page.module.css";
 
 export default function CarrinhoPage() {
@@ -21,18 +23,24 @@ export default function CarrinhoPage() {
   // Se o carrinho estiver vazio, mostra mensagem informativa
   if (items.length === 0) {
     return (
-      <div className={styles.empty}>
-        <FaShoppingCart className={styles.emptyIcon} />
-        <h2>Seu carrinho está vazio</h2>
-        <p>Adicione produtos para continuar comprando.</p>
-        <Link href="/#produtos" className={styles.btnVoltar}>
-          Ver Produtos
-        </Link>
-      </div>
+      <>
+        <Header />
+        <div className={styles.empty}>
+          <FaShoppingCart className={styles.emptyIcon} />
+          <h2>Seu carrinho está vazio</h2>
+          <p>Adicione produtos para continuar comprando.</p>
+          <Link href="/#produtos" className={styles.btnVoltar}>
+            Ver Produtos
+          </Link>
+        </div>
+        <Footer />
+      </>
     );
   }
 
   return (
+    <>
+    <Header />
     <div className={styles.page}>
       <div className={styles.container}>
         <h1 className={styles.heading}>Carrinho de Compras</h1>
@@ -136,5 +144,7 @@ export default function CarrinhoPage() {
         </div>
       </div>
     </div>
+    <Footer />
+  </>
   );
 }

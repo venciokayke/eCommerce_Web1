@@ -5,6 +5,14 @@ import { useCart } from "@/app/context/CartContext";
 import LikeButton from "./LikeButton";
 import styles from "./ProductCard.module.css";
 
+// Traduz as categorias da API (em inglês) para português
+const traducaoCategoria: Record<string, string> = {
+  "men's clothing": "Roupas Masculinas",
+  "women's clothing": "Roupas Femininas",
+  jewelery: "Joias",
+  electronics: "Eletrônicos",
+};
+
 // Propriedades esperadas pelo componente
 interface ProductCardProps {
   product: Product;
@@ -39,8 +47,10 @@ export default function ProductCard({ product }: ProductCardProps) {
           alt={product.title}
           className={styles.image}
         />
-        {/* Badge da categoria no canto superior da imagem */}
-        <span className={styles.badge}>{product.category}</span>
+        {/* Badge da categoria traduzida para português */}
+        <span className={styles.badge}>
+          {traducaoCategoria[product.category] ?? product.category}
+        </span>
       </div>
 
       <div className={styles.body}>
