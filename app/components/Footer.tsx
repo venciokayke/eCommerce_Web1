@@ -77,7 +77,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/#sobre"
+                  href="/quem-somos"
                   className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
                   Sobre Nós
