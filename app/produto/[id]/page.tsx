@@ -72,7 +72,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
   return (
     <>
       <Header />
-      <main >
+      <main className={styles.main}>
         <div className={styles.breadcrumbs}>
           <Link href="/">Home</Link>
           <span>›</span>

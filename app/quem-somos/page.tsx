@@ -25,8 +25,6 @@ export default function quemSomos() {
             desenvolvimento web.
           </p>
         </div>
-
-        
       </main>
       <Footer />
     </>

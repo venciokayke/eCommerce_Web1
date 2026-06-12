@@ -85,18 +85,18 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/#promocoes"
+                  href="/contato"
                   className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
-                  Promoções
+                  Contato
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/#contato"
+                  href="/troca"
                   className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
-                  Contato
+                  Trocas e Devoluções
                 </Link>
               </li>
             </ul>
