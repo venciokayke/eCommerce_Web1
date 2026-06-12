@@ -70,10 +70,10 @@ export default function Header() {
             Nossos Produtos
           </a>
           <a
-            href="/#quem-somos"
+            href="/contato"
             className="hover:text-gray-500 transition-colors"
           >
-            Quem Somos
+            Contato
           </a>
             <Link href="/favoritos" className="hover:text-rose-400 transition-colors flex items-center gap-1">
               <FaHeart className="text-lg" />
@@ -99,8 +99,8 @@ export default function Header() {
             </a>
           </li>
           <li>
-            <a href="/#quem-somos" onClick={() => setIsOpen(false)}>
-              Quem Somos
+            <a href="/contato" onClick={() => setIsOpen(false)}>
+              Contato
             </a>
           </li>
            <li>

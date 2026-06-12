@@ -59,6 +59,11 @@
   gap: 8px;
 }
 
+.titleLink {
+  text-decoration: none;
+  color: inherit;
+}
+
 .title {
   font-size: 0.95rem;
   font-weight: 600;
@@ -125,6 +130,23 @@
 }
 
 /* Botão de adicionar ao carrinho */
+.btnDetails {
+  background-color: rgba(2, 132, 199, 0.12);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.btnDetails:hover {
+  background-color: rgba(56, 189, 248, 0.16);
+  transform: scale(1.03);
+}
+
 .btnCart {
   background-color: #0891b2;
   color: #fff;
@@ -144,4 +166,12 @@
 
 .btnCart:active {
   transform: scale(0.97);
+}
+
+/* Estado neutro quando já adicionado (desabilitado) */
+.btnCart:disabled {
+  background-color: #475569;
+  cursor: default;
+  transform: none;
+  opacity: 0.95;
 }
