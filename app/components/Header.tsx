@@ -2,7 +2,7 @@
 import { useState, useEffect, type MouseEvent } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaHeart } from "react-icons/fa";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -75,6 +75,10 @@ export default function Header() {
           >
             Quem Somos
           </a>
+            <Link href="/favoritos" className="hover:text-rose-400 transition-colors flex items-center gap-1">
+              <FaHeart className="text-lg" />
+              <span>Favoritos</span>
+         </Link>
           <Link
             href="/carrinho-compras"
             className="border border-white text-white px-4 py-2 rounded-full hover:bg-cyan-600 transition-colors flex items-center justify-center"
@@ -99,11 +103,11 @@ export default function Header() {
               Quem Somos
             </a>
           </li>
-          <li>
-            <Link href="/trabalhe-conosco" onClick={() => setIsOpen(false)}>
-              Trabalhe Conosco
-            </Link>
-          </li>
+           <li>
+              <Link href="/favoritos" onClick={() => setIsOpen(false)}>
+              Favoritos
+             </Link>
+           </li>
         </ul>
       </div>
     </header>

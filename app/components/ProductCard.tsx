@@ -71,7 +71,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <span className={styles.price}>{precoFormatado}</span>
           <div className={styles.actions}>
             {/* Botão de favoritar */}
-            <LikeButton productId={product.id} />
+            <LikeButton produto={product} />
             {/* Botão de adicionar ao carrinho */}
             <button
               onClick={handleAddToCart}
