@@ -4,6 +4,7 @@ import { Poppins } from 'next/font/google';
 import { Akaya_Kanadaka } from 'next/font/google';
 import FloatingCart from "./components/FloatingCart";
 import { CartProvider } from "./context/CartContext";
+import { FavoritosProvider } from "./context/FavoritosContext";
 
 const akaya = Akaya_Kanadaka({
   subsets: ['latin'],
@@ -30,8 +31,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={`bg-slate-900 text-white antialiased font-poppins ${poppins.className}`}>
         {/* CartProvider envolve tudo para que qualquer componente acesse o carrinho */}
         <CartProvider>
+          <FavoritosProvider>
           <main>{children}</main>
           <FloatingCart />
+          </FavoritosProvider>
         </CartProvider>
       </body>
     </html>
