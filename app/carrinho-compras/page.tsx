@@ -40,111 +40,116 @@ export default function CarrinhoPage() {
 
   return (
     <>
-    <Header />
-    <div className={styles.page}>
-      <div className={styles.container}>
-        <h1 className={styles.heading}>Carrinho de Compras</h1>
+      <Header />
+      <div className={styles.page}>
+        <div className={styles.container}>
+          <h1 className={styles.heading}>Carrinho de Compras</h1>
 
-        <div className={styles.layout}>
-          {/* Lista de itens do carrinho */}
-          <div className={styles.itemsList}>
-            {/* Botão para limpar tudo de uma vez */}
-            <div className={styles.listHeader}>
-              <span>{items.length} {items.length === 1 ? "item" : "itens"}</span>
-              <button onClick={clearCart} className={styles.btnClear}>
-                Limpar carrinho
-              </button>
-            </div>
+          <div className={styles.layout}>
+            {/* Lista de itens do carrinho */}
+            <div className={styles.itemsList}>
+              {/* Botão para limpar tudo de uma vez */}
+              <div className={styles.listHeader}>
+                <span>
+                  {items.length} {items.length === 1 ? "item" : "itens"}
+                </span>
+                <button onClick={clearCart} className={styles.btnClear}>
+                  Limpar carrinho
+                </button>
+              </div>
 
-            {items.map((item) => (
-              <div key={item.id} className={styles.item}>
-                {/* Imagem do produto */}
-                <div className={styles.itemImage}>
-                  <img src={item.image} alt={item.name} />
-                </div>
+              {items.map((item) => (
+                <div key={item.id} className={styles.item}>
+                  {/* Imagem do produto */}
+                  <Link href={`/produto/${item.id}`} className={styles.itemImage}>
+                    <img src={item.image} alt={item.name} />
+                  </Link>
 
-                <div className={styles.itemInfo}>
-                  <p className={styles.itemName}>{item.name}</p>
-                  <p className={styles.itemPrice}>
-                    {formatarPreco(item.price)}
-                  </p>
-                </div>
-
-                <div className={styles.itemControls}>
-                  {/* Controle de quantidade */}
-                  <div className={styles.quantityControl}>
-                    <button
-                      onClick={() =>
-                        updateQuantity(item.id, item.quantity - 1)
-                      }
-                      className={styles.qtyBtn}
-                      aria-label="Diminuir quantidade"
+                  <div className={styles.itemInfo}>
+                    <Link
+                      href={`/produto/${item.id}`}
+                      className={styles.titleLink}
                     >
-                      <FaMinus />
-                    </button>
-                    <span className={styles.qty}>{item.quantity}</span>
-                    <button
-                      onClick={() =>
-                        updateQuantity(item.id, item.quantity + 1)
-                      }
-                      className={styles.qtyBtn}
-                      aria-label="Aumentar quantidade"
-                    >
-                      <FaPlus />
-                    </button>
+                      <h3 className={styles.title}>{item.name}</h3>
+                    </Link>
+                    <p className={styles.itemPrice}>
+                      {formatarPreco(item.price)}
+                    </p>
                   </div>
 
-                  {/* Subtotal do item */}
-                  <span className={styles.subtotal}>
-                    {formatarPreco(item.price * item.quantity)}
-                  </span>
+                  <div className={styles.itemControls}>
+                    {/* Controle de quantidade */}
+                    <div className={styles.quantityControl}>
+                      <button
+                        onClick={() =>
+                          updateQuantity(item.id, item.quantity - 1)
+                        }
+                        className={styles.qtyBtn}
+                        aria-label="Diminuir quantidade"
+                      >
+                        <FaMinus />
+                      </button>
+                      <span className={styles.qty}>{item.quantity}</span>
+                      <button
+                        onClick={() =>
+                          updateQuantity(item.id, item.quantity + 1)
+                        }
+                        className={styles.qtyBtn}
+                        aria-label="Aumentar quantidade"
+                      >
+                        <FaPlus />
+                      </button>
+                    </div>
 
-                  {/* Remover item */}
-                  <button
-                    onClick={() => removeItem(item.id)}
-                    className={styles.btnRemove}
-                    aria-label="Remover produto"
-                  >
-                    <FaTrash />
-                  </button>
+                    {/* Subtotal do item */}
+                    <span className={styles.subtotal}>
+                      {formatarPreco(item.price * item.quantity)}
+                    </span>
+
+                    {/* Remover item */}
+                    <button
+                      onClick={() => removeItem(item.id)}
+                      className={styles.btnRemove}
+                      aria-label="Remover produto"
+                    >
+                      <FaTrash />
+                    </button>
+                  </div>
                 </div>
+              ))}
+            </div>
+
+            {/* Resumo do pedido */}
+            <aside className={styles.summary}>
+              <h2 className={styles.summaryTitle}>Resumo do Pedido</h2>
+
+              <div className={styles.summaryRow}>
+                <span>Subtotal</span>
+                <span>{formatarPreco(totalPrice)}</span>
               </div>
-            ))}
+              <div className={styles.summaryRow}>
+                <span>Frete</span>
+                <span>{formatarPreco(frete)}</span>
+              </div>
+
+              <div className={styles.summaryDivider} />
+
+              <div className={`${styles.summaryRow} ${styles.summaryTotal}`}>
+                <span>Total</span>
+                <span>{formatarPreco(total)}</span>
+              </div>
+
+              {/* Botão de finalizar — sem rota real por enquanto */}
+              <button className={styles.btnCheckout}>Finalizar Compra</button>
+
+              <Link href="/#produtos" className={styles.btnContinue}>
+                ← Continuar Comprando
+              </Link>
+            </aside>
           </div>
-
-          {/* Resumo do pedido */}
-          <aside className={styles.summary}>
-            <h2 className={styles.summaryTitle}>Resumo do Pedido</h2>
-
-            <div className={styles.summaryRow}>
-              <span>Subtotal</span>
-              <span>{formatarPreco(totalPrice)}</span>
-            </div>
-            <div className={styles.summaryRow}>
-              <span>Frete</span>
-              <span>{formatarPreco(frete)}</span>
-            </div>
-
-            <div className={styles.summaryDivider} />
-
-            <div className={`${styles.summaryRow} ${styles.summaryTotal}`}>
-              <span>Total</span>
-              <span>{formatarPreco(total)}</span>
-            </div>
-
-            {/* Botão de finalizar — sem rota real por enquanto */}
-            <button className={styles.btnCheckout}>
-              Finalizar Compra
-            </button>
-
-            <Link href="/#produtos" className={styles.btnContinue}>
-              ← Continuar Comprando
-            </Link>
-          </aside>
         </div>
       </div>
-    </div>
-    <Footer />
-  </>
+      <Footer />
+    </>
   );
 }

@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { type Product } from "@/app/data/products";
-import { useCart } from "@/app/context/CartContext";
 import LikeButton from "./LikeButton";
+import AddToCartButton from "./AddToCartButton";
 import styles from "./ProductCard.module.css";
 
 // Traduz as categorias da API (em inglês) para português
@@ -19,29 +20,17 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  // Pega a função de adicionar ao carrinho do contexto global
-  const { addItem } = useCart();
 
-  // Formata o preço para o padrão brasileiro (R$ 99,90)
+  // Formata o preço para o padrão brasileiro
   const precoFormatado = product.price.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
   });
 
-  // Quando o usuário clica em "Adicionar ao Carrinho"
-  const handleAddToCart = () => {
-    addItem({
-      id: product.id,
-      name: product.title,
-      price: product.price,
-      image: product.image,
-    });
-  };
-
   return (
     <div className={styles.card}>
       {/* Imagem do produto com altura fixa para manter o grid alinhado */}
-      <div className={styles.imageWrapper}>
+      <Link href={`/produto/${product.id}`} className={styles.imageWrapper}>
         <img
           src={product.image}
           alt={product.title}
@@ -51,11 +40,13 @@ export default function ProductCard({ product }: ProductCardProps) {
         <span className={styles.badge}>
           {traducaoCategoria[product.category] ?? product.category}
         </span>
-      </div>
+      </Link>
 
       <div className={styles.body}>
-        {/* Nome do produto — limitado a 2 linhas via CSS */}
-        <h3 className={styles.title}>{product.title}</h3>
+        
+        <Link href={`/produto/${product.id}`} className={styles.titleLink}>
+          <h3 className={styles.title}>{product.title}</h3>
+        </Link>
 
         {/* Avaliação com estrelas */}
         <div className={styles.rating}>
@@ -73,13 +64,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             {/* Botão de favoritar */}
             <LikeButton productId={product.id} />
             {/* Botão de adicionar ao carrinho */}
-            <button
-              onClick={handleAddToCart}
-              className={styles.btnCart}
-              title="Adicionar ao carrinho"
-            >
-              Adicionar
-            </button>
+            <AddToCartButton product={product} className={styles.btnCart} />
           </div>
         </div>
       </div>
