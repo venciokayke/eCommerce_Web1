@@ -103,11 +103,6 @@ export default function Header() {
               Quem Somos
             </a>
           </li>
-          <li>
-            <Link href="/trabalhe-conosco" onClick={() => setIsOpen(false)}>
-              Trabalhe Conosco
-            </Link>
-          </li>
            <li>
               <Link href="/favoritos" onClick={() => setIsOpen(false)}>
               Favoritos

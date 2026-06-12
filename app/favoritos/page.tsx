@@ -5,13 +5,14 @@ import Image from "next/image";
 import { useFavoritos } from "@/app/context/FavoritosContext";
 import LikeButton from "@/app/components/LikeButton";
 import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer"
 
 export default function FavoritosPage() {
   const { favoritos, limparFavoritos } = useFavoritos();
 
   return (
     <main className="min-h-screen bg-slate-900">
-      <Header />  {/* ← adicionado aqui */}
+      <Header />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 mt-24"> {/* ← mt-24 adicionado */}
 
@@ -113,6 +114,7 @@ export default function FavoritosPage() {
           </div>
         )}
       </div>
+      <Footer/>
     </main>
   );
 }
