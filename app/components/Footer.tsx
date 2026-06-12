@@ -14,24 +14,20 @@ export default function Footer() {
   const anoAtual = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0a0a0a] pt-20 pb-10 px-6 md:px-10 border-t border-white/5">
+    <footer className="bg-[#0a0a0a] pt-20 pb-10 px-6 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
         {/* Grid Principal */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
           <div className="md:col-span-5 flex flex-col">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="leading-none relative w-[200px] h-[60px] md:w-[250px] md:h-[80px]">
-                <Link
-                  href="/"
-                  className="flex items-center group"
-                >
-                  <div>
-                    <span className="text-[44px] tracking-widest text-white logo-text">
-                      P2 Store
-                    </span>
-                  </div>
-                </Link>
-              </div>
+            <div className="flex items-center mb-6">
+              <Link
+                href="/"
+                className="flex items-center group"
+              >
+                <span className="text-[44px] tracking-widest text-white logo-text leading-none">
+                  P2 Store
+                </span>
+              </Link>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-sm mb-8">
               Loja online de produtos selecionados com entrega rápida e suporte
