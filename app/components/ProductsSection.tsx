@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { type Product } from "@/app/data/products";
 import ProductCard from "./ProductCard";
+import SearchBar from "./SearchBar";
 import styles from "./ProductsSection.module.css";
 
 export default function ProductsSection() {
@@ -17,6 +18,9 @@ export default function ProductsSection() {
 
   // Categoria selecionada para filtrar — "all" significa todas
   const [categoriaSelecionada, setCategoriaSelecionada] = useState("all");
+
+  // Estado para busca textual
+  const [busca, setBusca] = useState("");
 
   // Mapa de tradução das categorias da API para português
   const traducoes: Record<string, string> = {
@@ -50,11 +54,13 @@ export default function ProductsSection() {
   // Extrai as categorias únicas da lista de produtos para os filtros
   const categorias = ["all", ...new Set(products.map((p) => p.category))];
 
-  // Filtra os produtos conforme a categoria escolhida
-  const produtosFiltrados =
-    categoriaSelecionada === "all"
-      ? products
-      : products.filter((p) => p.category === categoriaSelecionada);
+  // Filtra os produtos conforme a categoria escolhida e termo de busca
+  const produtosFiltrados = products.filter((p) => {
+    const matchesCategory =
+      categoriaSelecionada === "all" || p.category === categoriaSelecionada;
+    const matchesSearch = p.title.toLowerCase().includes(busca.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     // Âncora #produtos usada pelo Header para scroll suave
@@ -82,6 +88,9 @@ export default function ProductsSection() {
             </button>
           ))}
         </div>
+
+        {/* Barra de busca filtrando em tempo real */}
+        <SearchBar value={busca} onChange={setBusca} />
 
         {/* Estado de carregamento */}
         {loading && (
